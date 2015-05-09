@@ -15,4 +15,10 @@
     <string name="action_settings">Settings</string>
     <string name="action_filter">Filter</string>
     <string name="fetching">Loading data...</string>
+    <string name="clear_button">Clear button</string>
+    <string name="no_results">No results found</string>
+    <string name="error">Error receiving data</string>
+    <string name="filter_positive_button">SEARCH</string>
+
+
 </resources>

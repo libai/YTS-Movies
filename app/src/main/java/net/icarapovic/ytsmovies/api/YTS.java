@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import net.icarapovic.ytsmovies.R;
 import net.icarapovic.ytsmovies.adapters.MovieListAdapter;
 import net.icarapovic.ytsmovies.models.ListMovies;
 import net.icarapovic.ytsmovies.models.Movie;
@@ -86,7 +87,7 @@ public class YTS {
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(c, "Error getting data", Toast.LENGTH_LONG).show();
+                Toast.makeText(c, R.string.error, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -100,14 +101,14 @@ public class YTS {
                 listMoviesResponse = listMovies.getListMoviesResponse();
                 movies = listMoviesResponse.getMovies();
                 if(movies.length == 0){
-                    Toast.makeText(c, "Query returned 0 results",Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, R.string.no_results,Toast.LENGTH_LONG).show();
                 }
                 recyclerView.setAdapter(new MovieListAdapter(c, movies));
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(c, "Error getting data", Toast.LENGTH_LONG).show();
+                Toast.makeText(c, R.string.error, Toast.LENGTH_LONG).show();
             }
         });
     }
