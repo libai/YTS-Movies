@@ -14,7 +14,7 @@ public interface ApiRequest {
             @Query("limit") int limit,
             @Query("page") int page,
             @Query("quality") String quality,
-            @Query("minimum_rating") int rating,
+            @Query("minimum_rating") String rating,
             @Query("genre") String genre,
             @Query("sort_by") String sort,
             @Query("order_by") String order,

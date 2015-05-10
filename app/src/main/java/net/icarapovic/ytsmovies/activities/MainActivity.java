@@ -22,10 +22,13 @@ import net.icarapovic.ytsmovies.api.YTS;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
-    FloatingActionButton fab;
+    private Toolbar toolbar;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private FloatingActionButton fab;
+    private boolean isLoading;
+    private int page;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +81,14 @@ public class MainActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        isLoading = false;
+        page = 1;
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        new YTS().getMovieList(this, recyclerView);
+        new YTS().getRecentMovies(this, recyclerView, page);
     }
 
     private void checkConnection(){
