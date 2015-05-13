@@ -6,10 +6,10 @@ Currently still in development (alpha)
 Working features:
   - Fetch and display last 20 movies added
   - Search database by movie title, director, actor or their IMDb codes
+  - Filter movies by all available parameters
 
 To be implemented:
   - Browse more than 20 last movies added
-  - Filter movies by all available parameters
   - Show detailed movie/actor/director info
   - User registration, login and managment
   - Movie bookmarking, liking and managment
