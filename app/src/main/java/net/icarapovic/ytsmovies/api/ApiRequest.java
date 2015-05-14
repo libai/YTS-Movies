@@ -2,6 +2,7 @@ package net.icarapovic.ytsmovies.api;
 
 import net.icarapovic.ytsmovies.models.ListMovies;
 import net.icarapovic.ytsmovies.models.MovieDetails;
+import net.icarapovic.ytsmovies.responses.MovieDetailsResponse;
 
 import retrofit.Callback;
 import retrofit.http.GET;

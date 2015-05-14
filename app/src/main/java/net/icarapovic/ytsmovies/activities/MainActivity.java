@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 
@@ -26,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private FloatingActionButton fab;
-    private boolean isLoading;
-    private int page;
+    private int page = 1;
 
 
     @Override
@@ -41,13 +41,9 @@ public class MainActivity extends AppCompatActivity {
         // initialize views n shit
         init();
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(i);
-            }
-        });
+        // let there be interaction!
+        setupListeners();
+
     }
 
     @Override
@@ -65,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.menu_login:
+                Toast.makeText(this, "Nope...", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_settings:
+                Toast.makeText(this, "Nope again...", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_about:
+                Toast.makeText(this, "To be implemented...", Toast.LENGTH_SHORT).show();
                 return true;
         }
 
@@ -81,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        isLoading = false;
-        page = 1;
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -120,5 +117,17 @@ public class MainActivity extends AppCompatActivity {
                     .create();
             builder.show();
         }
+    }
+
+    private void setupListeners(){
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

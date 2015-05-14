@@ -112,7 +112,6 @@ public class SearchActivity extends AppCompatActivity {
                 query = searchField.getText().toString();
 
                 if (!isFilterEnabled) {
-                    recyclerView.setVisibility(View.VISIBLE);
                     new YTS().searchByQuery(SearchActivity.this, query, recyclerView);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);

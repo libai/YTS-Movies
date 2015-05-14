@@ -2,13 +2,17 @@ package net.icarapovic.ytsmovies.api;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import net.icarapovic.ytsmovies.R;
 import net.icarapovic.ytsmovies.adapters.MovieListAdapter;
 import net.icarapovic.ytsmovies.models.ListMovies;
 import net.icarapovic.ytsmovies.models.Movie;
+import net.icarapovic.ytsmovies.models.MovieDetails;
 import net.icarapovic.ytsmovies.responses.ListMoviesResponse;
+import net.icarapovic.ytsmovies.responses.MovieDetailsResponse;
 import net.steamcrafted.loadtoast.LoadToast;
 
 import retrofit.Callback;
@@ -24,6 +28,7 @@ public class YTS {
     public static final int DEFAULT_LIMIT = 20; // 1-50
 
     ListMoviesResponse listMoviesResponse;
+    MovieDetailsResponse movieDetailsResponse;
     Movie[] movies;
 
     final RestAdapter adapter = new RestAdapter.Builder()
@@ -63,6 +68,7 @@ public class YTS {
                 }
                 recyclerView.setAdapter(new MovieListAdapter(c, movies));
                 recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -90,6 +96,11 @@ public class YTS {
                 Toast.makeText(c, R.string.error, Toast.LENGTH_LONG).show();
             }
         });
+
+    }
+
+    public void getMovieDetails(int id, Callback<MovieDetails> callback){
+        service.getMovieDetails(id, true, true, callback);
     }
 
 }

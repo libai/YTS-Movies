@@ -21,6 +21,7 @@
         <ImageView
             android:contentDescription="@string/artworkDescription"
             android:id="@+id/artwork"
+            android:transitionName="poster"
             android:layout_width="100dp"
             android:layout_marginLeft="-3dp"
             android:layout_marginStart="-3dp"

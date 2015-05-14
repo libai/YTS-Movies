@@ -153,6 +153,22 @@
     <string name="search">SEARCH</string>
     <string name="rating">Rating:</string>
     <string name="artworkDescription">Movie poster</string>
+    <string name="title_activity_movie_details">Details</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="directed_by">Directed by:</string>
+    <string name="director_img">Director image</string>
+    <string name="actors">Cast:</string>
+    <string name="poster_desc">Movie poster</string>
+    <string name="director">Directed by:</string>
+    <string name="other">Other information:</string>
+    <string name="language">Language:</string>
+    <string name="rt_rating">RT rating:</string>
+    <string name="downloads">Downloaded:</string>
+    <string name="likes">Liked:</string>
+    <string name="size">Size:</string>
+    <string name="framerate">Framerate:</string>
+    <string name="description">Description:</string>
 
 
 </resources>

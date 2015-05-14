@@ -3,23 +3,23 @@ package net.icarapovic.ytsmovies.models;
 public class Actor {
 
     private String name;
-    private String characterName;
-    private String smallImage;
-    private String mediumImage;
+    private String character_name;
+    private String small_image;
+    private String medium_image;
 
     public String getName() {
         return name;
     }
 
     public String getCharacterName() {
-        return characterName;
+        return character_name;
     }
 
     public String getSmallImage() {
-        return smallImage;
+        return small_image;
     }
 
     public String getMediumImage() {
-        return mediumImage;
+        return medium_image;
     }
 }
