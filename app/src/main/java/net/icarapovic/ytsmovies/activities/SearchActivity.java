@@ -33,13 +33,13 @@ public class SearchActivity extends AppCompatActivity {
     private EditText searchField;
     private ImageButton clear;
     private RecyclerView recyclerView;
-    private String query;
     private Button searchButton;
     private LinearLayoutManager llm;
     private LinearLayout qualityFilter, genreFilter, sortFilter, orderFilter, ratingFilter;
     private AppCompatSpinner qualitySpinner, genreSpinner, sortSpinner, orderSpinner, ratingSpinner;
     private boolean isFilterEnabled;
     private  ArrayAdapter<CharSequence> qualityAdapter, genreAdapter, sortAdapter, orderAdapter, ratingAdapter;
+    InputMethodManager imm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +101,8 @@ public class SearchActivity extends AppCompatActivity {
         ratingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ratingSpinner.setAdapter(ratingAdapter);
 
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
     }
 
     private void setupListeners(){
@@ -109,15 +111,12 @@ public class SearchActivity extends AppCompatActivity {
         searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                query = searchField.getText().toString();
 
                 if (!isFilterEnabled) {
-                    new YTS().searchByQuery(SearchActivity.this, query, recyclerView);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    new YTS().searchByQuery(SearchActivity.this, searchField.getText().toString(), recyclerView);
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
                     return true;
                 } else {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
                     searchButton.callOnClick();
                     return true;
@@ -156,7 +155,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent result = new Intent(SearchActivity.this, ResultActivity.class);
-                result.putExtra("query", query);
+                result.putExtra("query", searchField.getText().toString());
                 result.putExtra("quality", getResources().getStringArray(R.array.quality_value)[qualitySpinner.getSelectedItemPosition()]);
                 result.putExtra("genre", getResources().getStringArray(R.array.genre_value)[genreSpinner.getSelectedItemPosition()]);
                 result.putExtra("sort", getResources().getStringArray(R.array.sort_value)[sortSpinner.getSelectedItemPosition()]);
@@ -187,6 +186,7 @@ public class SearchActivity extends AppCompatActivity {
                     ratingFilter.setVisibility(View.VISIBLE);
                     searchButton.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
+                    imm.hideSoftInputFromWindow(searchField.getApplicationWindowToken(), 0);
                     isFilterEnabled = true;
                     return true;
                 }else{

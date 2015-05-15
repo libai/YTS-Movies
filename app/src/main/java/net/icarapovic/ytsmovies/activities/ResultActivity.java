@@ -17,7 +17,7 @@ public class ResultActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Toolbar toolbar;
     private LinearLayoutManager llm;
-    private int page;
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void displayData(){
-        new YTS().searchByFilter(getApplicationContext(), query, quality, genre, sort, order, rating, page, recyclerView);
+        new YTS().searchByFilter(this, query, quality, genre, sort, order, rating, page, recyclerView);
     }
 
 

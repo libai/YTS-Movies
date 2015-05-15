@@ -44,6 +44,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.year.setText("Year: " + movies[position].getYear());
         holder.rating.setText("Rating: " + movies[position].getRating());
         Picasso.with(c).load(movies[position].getMedium_cover_image()).into(holder.poster);
+        holder.runtime.setText("Runtime: " + movies[position].getRuntime() + " min");
 
         if(movies[position].getGenres().length > 1)
             { holder.genre.setText(movies[position].getGenres()[0] + " / " + movies[position].getGenres()[1]); }
@@ -76,6 +77,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         protected TextView genre;
         protected TextView rating;
         protected ImageView poster;
+        protected TextView runtime;
 
 
         public MovieViewHolder(View itemView) {
@@ -86,7 +88,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             genre = (TextView) itemView.findViewById(R.id.genre);
             rating = (TextView) itemView.findViewById(R.id.rating);
             poster = (ImageView) itemView.findViewById(R.id.artwork);
-
+            runtime = (TextView) itemView.findViewById(R.id.duration);
         }
     }
 
