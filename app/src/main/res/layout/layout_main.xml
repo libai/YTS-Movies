@@ -3,6 +3,7 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_white_light"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -13,26 +14,48 @@
         android:background="@color/color_green_light">
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        android:id="@+id/recycler"
-         />
+        android:id="@+id/vPager"
+        android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
+        android:layout_height="wrap_content">
+
+            <android.support.v4.view.PagerTabStrip
+                android:id="@+id/pager_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@color/color_green_light"
+                style="@style/PagerText"
+             />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="-56dp"
+                android:layout_height="match_parent"
+                android:id="@+id/recycler"/>
+
+    </android.support.v4.view.ViewPager>
+
+
+
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:transitionName="fab"
         android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-        fab:fab_colorNormal="@color/color_red_light"
-        fab:fab_colorPressed="@color/color_red_dark"
+        fab:fab_colorNormal="@color/color_orange_light"
+        fab:fab_colorPressed="@color/color_orange_dark"
         fab:fab_colorRipple="@color/color_white_light"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/recycler"
-        android:layout_alignEnd="@+id/recycler"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

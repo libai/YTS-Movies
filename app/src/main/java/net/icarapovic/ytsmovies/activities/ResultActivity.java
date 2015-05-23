@@ -6,9 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Toast;
 
 import net.icarapovic.ytsmovies.R;
-import net.icarapovic.ytsmovies.api.YTS;
+import net.icarapovic.ytsmovies.adapters.MovieListAdapter;
+import net.icarapovic.ytsmovies.api.Server;
+import net.icarapovic.ytsmovies.models.ListMovies;
+import net.icarapovic.ytsmovies.models.Movie;
+import net.steamcrafted.loadtoast.LoadToast;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -18,6 +28,7 @@ public class ResultActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private LinearLayoutManager llm;
     private int page = 1;
+    private LoadToast lt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +42,8 @@ public class ResultActivity extends AppCompatActivity {
 
     private void init(){
         data = getIntent();
+        lt = new LoadToast(this);
+        lt.setText("Fetching results...").setTranslationY(300).show();
 
         query = data.getStringExtra("query");
         quality = data.getStringExtra("quality");
@@ -53,8 +66,27 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void displayData(){
-        new YTS().searchByFilter(this, query, quality, genre, sort, order, rating, page, recyclerView);
+        Server server = new Server();
+        server.searchByFilter(query, quality, genre, sort, order, rating, page, new Callback<ListMovies>() {
+            @Override
+            public void success(ListMovies listMovies, Response response) {
+                Movie[] movies = listMovies.getListMoviesResponse().getMovies();
+                if(movies.length == 0)
+                    Toast.makeText(getApplicationContext(), R.string.no_results, Toast.LENGTH_SHORT).show();
+                recyclerView.setAdapter(new MovieListAdapter(ResultActivity.this, movies));
+                recyclerView.getAdapter().notifyDataSetChanged();
+                lt.success();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                lt.error();
+            }
+        });
     }
+
+
+
 
 
 

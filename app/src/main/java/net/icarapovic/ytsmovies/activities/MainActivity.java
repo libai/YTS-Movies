@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,17 +23,22 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 
 import net.icarapovic.ytsmovies.R;
-import net.icarapovic.ytsmovies.api.YTS;
+import net.icarapovic.ytsmovies.adapters.MovieListAdapter;
+import net.icarapovic.ytsmovies.api.Server;
+import net.icarapovic.ytsmovies.fragments.NewestFragment;
+import net.icarapovic.ytsmovies.fragments.UpcomingFragment;
+import net.icarapovic.ytsmovies.models.ListMovies;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
     private FloatingActionButton fab;
-    private int page = 1;
-
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +86,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ViewPager pager = (ViewPager) findViewById(R.id.vPager);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(pagerAdapter);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        new YTS().getRecentMovies(this, recyclerView, page);
+        Server server = new Server();
+        server.getRecentMovies(1, new Callback<ListMovies>() {
+            @Override
+            public void success(ListMovies listMovies, Response response) {
+                recyclerView.setAdapter(new MovieListAdapter(MainActivity.this, listMovies.getListMoviesResponse().getMovies()));
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Toast.makeText(getApplicationContext(), "Error receiving data", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void checkConnection(){
@@ -124,10 +149,49 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(MainActivity.this, fab, "fab");
                 Intent i = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(i);
+                startActivity(i, options.toBundle());
             }
         });
 
+    }
+
+    public static class PagerAdapter extends FragmentPagerAdapter {
+
+        private static int ITEM_COUNT = 2;
+        public PagerAdapter(FragmentManager fm){
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch(position){
+                case 0:
+                    return NewestFragment.newInstance();
+                case 1:
+                    return UpcomingFragment.newInstance();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return ITEM_COUNT;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch(position){
+                case 0:
+                    return "Newest";
+                case 1:
+                    return "Upcoming";
+                default:
+                    return "Unknown" + position;
+            }
+        }
     }
 }

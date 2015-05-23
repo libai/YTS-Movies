@@ -2,6 +2,7 @@ package net.icarapovic.ytsmovies.api;
 
 import net.icarapovic.ytsmovies.models.ListMovies;
 import net.icarapovic.ytsmovies.models.MovieDetails;
+import net.icarapovic.ytsmovies.models.UpcomingMovies;
 import net.icarapovic.ytsmovies.responses.MovieDetailsResponse;
 
 import retrofit.Callback;
@@ -35,5 +36,10 @@ public interface ApiRequest {
     void search(
             @Query("query_term") String query,
             Callback<ListMovies> response
+    );
+
+    @GET("/list_upcoming.json")
+    void getUpcomingMovies(
+            Callback<UpcomingMovies> response
     );
 }

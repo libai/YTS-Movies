@@ -1,7 +1,6 @@
 package net.icarapovic.ytsmovies.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +19,11 @@ import net.icarapovic.ytsmovies.models.Movie;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
 
     private Movie[] movies;
-    private Context c;
+    private Activity a;
 
-    public MovieListAdapter(Context c, Movie[] movies){
+    public MovieListAdapter(Activity a, Movie[] movies){
         this.movies = movies;
-        this.c = c;
+        this.a = a;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         View itemView = LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.card_layout, parent, false);
+                inflate(R.layout.list_card, parent, false);
 
         return new MovieViewHolder(itemView);
     }
@@ -43,7 +42,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.title.setText(movies[position].getTitle());
         holder.year.setText("Year: " + movies[position].getYear());
         holder.rating.setText("Rating: " + movies[position].getRating());
-        Picasso.with(c).load(movies[position].getMedium_cover_image()).into(holder.poster);
+        Picasso.with(a).load(movies[position].getMedium_cover_image()).into(holder.poster);
         holder.runtime.setText("Runtime: " + movies[position].getRuntime() + " min");
 
         if(movies[position].getGenres().length > 1)
@@ -54,12 +53,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(c, MovieDetailsActivity.class);
+                Intent i = new Intent(a, MovieDetailsActivity.class);
                 i.putExtra("id", movies[position].getId());
+                i.putExtra("title",movies[position].getTitle());
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) c, holder.poster, "poster");
+                        makeSceneTransitionAnimation(a, holder.poster, "poster");
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                c.startActivity(i, options.toBundle());
+                a.startActivity(i, options.toBundle());
             }
         });
     }

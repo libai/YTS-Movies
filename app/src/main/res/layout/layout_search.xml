@@ -1,7 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/color_white_light"
     tools:context="net.icarapovic.ytsmovies.activities.SearchActivity">
 
 
@@ -12,171 +15,221 @@
         android:background="@color/color_green_light"
         android:id="@+id/toolbar">
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/abc_search_hint"
+                android:textColorHint="#99ffffff"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:singleLine="true"
+
+                android:id="@+id/search" />
+
+            <ImageButton
+                android:contentDescription="@string/clear_button"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_clear_white_24dp"
+                android:id="@+id/clear"
+                android:visibility="gone"/>
+
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/genre_filter"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:minHeight="48dp"
-        android:id="@+id/serchCard">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="@string/abc_search_hint"
-            android:textColorHint="@color/color_gray_light"
-            android:textColor="@color/color_gray_dark"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:singleLine="true"
-            android:background="@android:color/transparent"
-            android:id="@+id/search" />
-
-        <ImageButton
-            android:contentDescription="@string/clear_button"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_close_grey"
-            android:id="@+id/clear"
-            android:visibility="gone"/>
-
-    </android.support.v7.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/quality_filter"
-        android:visibility="gone"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginTop="8dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/quality"
-            android:gravity="center"
-            />
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/quality"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
-            android:layout_height="48dp" />
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/genre_filter"
-        android:visibility="gone"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/genre"
             android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
             />
 
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:id="@+id/genre"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
-            android:layout_height="48dp" />
+            style="@style/Widget.AppCompat.Spinner"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/sort_filter"
-        android:visibility="gone"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/sort"
             android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             />
 
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:id="@+id/sort"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
+            style="@style/Widget.AppCompat.Spinner"
+            android:layout_marginRight="16dp"
             android:layout_height="48dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/order_filter"
-        android:visibility="gone"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/order"
-            android:gravity="center"
-            />
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/order"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
-            android:layout_height="48dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/rating_filter"
-        android:visibility="gone"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="@string/rating"
             android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
             />
 
         <android.support.v7.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:id="@+id/rating"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
+            style="@style/Widget.AppCompat.Spinner"
+            android:layout_marginRight="16dp"
             android:layout_height="48dp" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="140dp"
-        android:id="@+id/search_button"
-        android:layout_height="44dp"
-        android:background="@color/color_green_dark"
-        android:text="@string/search"
-        android:gravity="center"
-        android:layout_gravity="end|right"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:textSize="18sp"
-        android:visibility="gone"
-        />
+        android:id="@+id/quality_filter">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler"
-        android:layout_gravity="center_horizontal"
-        android:visibility="visible"/>
+            <TextView
+                android:layout_width="100dp"
+                android:text="@string/quality"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_height="match_parent" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_gravity="left"
+                android:id="@+id/quality_rg">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/q_720p"
+                    android:checked="true"
+                    style="@style/RadioButton"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/q_720p" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/q_1080p"
+                    style="@style/RadioButton"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/q_1080p" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/q_3D"
+                    style="@style/RadioButton"
+                    android:id="@+id/q_3D" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:id="@+id/order_filter">
+
+        <TextView
+            android:layout_width="100dp"
+            android:text="@string/order"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_height="match_parent" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_gravity="left"
+                android:id="@+id/order_rg">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/o_asc"
+                    android:checked="true"
+                    style="@style/RadioButton"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/asc" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/o_desc"
+                    style="@style/RadioButton"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/desc" />
+
+                </RadioGroup>
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:transitionName="fab"
+            android:id="@+id/search_button"
+            app:fab_colorNormal="@color/color_orange_light"
+            app:fab_colorPressed="@color/color_orange_dark"
+            app:fab_colorRipple="@color/color_white_light"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha"/>
+        </RelativeLayout>
+
+
 </LinearLayout>

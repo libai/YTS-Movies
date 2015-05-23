@@ -22,20 +22,6 @@
     <string name="sort">Sort by:</string>
     <string name="order">Order by:</string>
 
-    <string-array name="quality_name">
-        <item name="0">All</item>
-        <item name="1">3D</item>
-        <item name="2">720p</item>
-        <item name="3">1080p</item>
-    </string-array>
-
-    <string-array name="quality_value">
-        <item name="0">all</item>
-        <item name="1">3D</item>
-        <item name="2">720p</item>
-        <item name="3">1080p</item>
-    </string-array>
-
     <string-array name="genre_name">
         <item name="0">All</item>
         <item name="1">Action</item>
@@ -110,29 +96,19 @@
         <item name="7">date_added</item>
     </string-array>
 
-    <string-array name="order_name">
-        <item name="0">Ascending</item>
-        <item name="1">Descending</item>
-    </string-array>
-
-    <string-array name="order_value">
-        <item name="0">asc</item>
-        <item name="1">desc</item>
-    </string-array>
-
 
 
     <string-array name="rating_name">
-        <item name="0">All</item>
-        <item name="1">1</item>
-        <item name="2">2</item>
-        <item name="3">3</item>
-        <item name="4">4</item>
-        <item name="5">5</item>
-        <item name="6">6</item>
-        <item name="7">7</item>
-        <item name="8">8</item>
-        <item name="9">9</item>
+        <item name="0">Any</item>
+        <item name="1">1 or higher</item>
+        <item name="2">2 or higher</item>
+        <item name="3">3 or higher</item>
+        <item name="4">4 or higher</item>
+        <item name="5">5 or higher</item>
+        <item name="6">6 or higher</item>
+        <item name="7">7 or higher</item>
+        <item name="8">8 or higher</item>
+        <item name="9">9 or higher</item>
     </string-array>
 
     <string-array name="rating_value">
@@ -169,6 +145,15 @@
     <string name="size">Size:</string>
     <string name="framerate">Framerate:</string>
     <string name="description">Description:</string>
+    <string name="q_720p">720p</string>
+    <string name="q_1080p">1080p</string>
+    <string name="q_3D">3D</string>
+    <string name="o_asc">Ascending</string>
+    <string name="o_desc">Descending</string>
+    <string name="youtube">WATCH YOUTUBE TRAILER</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
