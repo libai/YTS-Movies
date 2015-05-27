@@ -39,6 +39,10 @@ public class MovieInfoFragment extends Fragment {
         return fragment;
     }
 
+    public static String getTitle(){
+        return "Information";
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,7 @@ public class MovieInfoFragment extends Fragment {
                 m = movieDetails.getData();
 
                 Picasso.with(getActivity().getApplicationContext()).load(m.getImages().getLarge_cover_image()).into(poster);
-                if(m.getGenres().length > 1)
+                if(m.getGenres().length == 1)
                     genre.setText(m.getGenres()[0]);
                 else
                     genre.setText(m.getGenres()[0] + " / " + m.getGenres()[1]);

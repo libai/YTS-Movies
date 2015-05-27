@@ -30,6 +30,10 @@ public class NewestFragment extends Fragment{
         return mf;
     }
 
+    public static String getTitle(){
+        return "Newest";
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

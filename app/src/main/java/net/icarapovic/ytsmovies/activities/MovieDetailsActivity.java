@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import net.icarapovic.ytsmovies.R;
+import net.icarapovic.ytsmovies.adapters.DetailsPagerAdapter;
 import net.icarapovic.ytsmovies.api.Server;
 import net.icarapovic.ytsmovies.fragments.MovieInfoFragment;
 import net.icarapovic.ytsmovies.fragments.NewestFragment;
@@ -33,7 +34,7 @@ import retrofit.client.Response;
 
 public class MovieDetailsActivity extends AppCompatActivity{
 
-    PagerAdapter adapter;
+    DetailsPagerAdapter adapter;
     TextView title;
     static int id;
 
@@ -42,6 +43,7 @@ public class MovieDetailsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_details);
 
+        // initialize
         init();
     }
 
@@ -55,46 +57,15 @@ public class MovieDetailsActivity extends AppCompatActivity{
         title.setText(getIntent().getStringExtra("title"));
 
         ViewPager pager = (ViewPager) findViewById(R.id.vPager);
-        adapter = new PagerAdapter(getSupportFragmentManager());
+        adapter = new DetailsPagerAdapter(getSupportFragmentManager(), id);
         pager.setAdapter(adapter);
    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // roll back transition animation
         supportFinishAfterTransition();
     }
 
-    public static class PagerAdapter extends FragmentPagerAdapter {
-
-        private static int ITEM_COUNT = 1;
-        public PagerAdapter(FragmentManager fm){
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch(position){
-                case 0:
-                    return MovieInfoFragment.newInstance(id);
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return ITEM_COUNT;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch(position){
-                case 0:
-                    return "Information";
-                default:
-                    return "Unknown";
-            }
-        }
-    }
 }
