@@ -2,9 +2,12 @@ package net.icarapovic.ytsmovies.models;
 
 public class Movie {
 
+    public static final String ID = "id";
+
     private String small_cover_image;
     private String[] genres;
     private String medium_cover_image;
+    private String background_image;
     private String state;
     private String runtime;
     private String mpa_rating;
@@ -91,5 +94,9 @@ public class Movie {
 
     public String getLanguage() {
         return language;
+    }
+
+    public String getBackground_image() {
+        return background_image;
     }
 }

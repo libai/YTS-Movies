@@ -19,11 +19,11 @@ import net.icarapovic.ytsmovies.models.Movie;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieViewHolder> {
 
     private Movie[] movies;
-    private Activity a;
+    private Activity activity;
 
     public MovieListAdapter(Activity a, Movie[] movies){
         this.movies = movies;
-        this.a = a;
+        this.activity = a;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.title.setText(movies[position].getTitle());
         holder.year.setText("Year: " + movies[position].getYear());
         holder.rating.setText("Rating: " + movies[position].getRating());
-        Picasso.with(a).load(movies[position].getMedium_cover_image()).into(holder.poster);
+        Picasso.with(activity).load(movies[position].getMedium_cover_image()).into(holder.poster);
         holder.runtime.setText("Runtime: " + movies[position].getRuntime() + " min");
 
         if(movies[position].getGenres().length > 1)
@@ -53,13 +53,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(a, MovieDetailsActivity.class);
+                Intent i = new Intent(activity, MovieDetailsActivity.class);
                 i.putExtra("id", movies[position].getId());
                 i.putExtra("title",movies[position].getTitle());
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(a, holder.poster, "poster");
+                        makeSceneTransitionAnimation(activity, holder.poster, "poster");
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                a.startActivity(i, options.toBundle());
+                activity.startActivity(i, options.toBundle());
             }
         });
     }

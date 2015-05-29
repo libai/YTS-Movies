@@ -1,8 +1,5 @@
 package net.icarapovic.ytsmovies.activities;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,26 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
 
 import net.icarapovic.ytsmovies.R;
-import net.icarapovic.ytsmovies.api.Server;
 import net.icarapovic.ytsmovies.fragments.MovieInfoFragment;
-import net.icarapovic.ytsmovies.fragments.NewestFragment;
-import net.icarapovic.ytsmovies.fragments.UpcomingFragment;
-import net.icarapovic.ytsmovies.models.Movie;
-import net.icarapovic.ytsmovies.models.MovieDetails;
-import net.icarapovic.ytsmovies.responses.MovieDetailsResponse;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MovieDetailsActivity extends AppCompatActivity{
 
@@ -59,11 +41,6 @@ public class MovieDetailsActivity extends AppCompatActivity{
         pager.setAdapter(adapter);
    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        supportFinishAfterTransition();
-    }
 
     public static class PagerAdapter extends FragmentPagerAdapter {
 
@@ -97,4 +74,14 @@ public class MovieDetailsActivity extends AppCompatActivity{
             }
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
