@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import net.icarapovic.ytsmovies.R;
 import net.icarapovic.ytsmovies.adapters.MovieListAdapter;
@@ -24,31 +23,27 @@ import retrofit.client.Response;
 public class NewestFragment extends Fragment{
 
     LoadToast lt;
+    public static final String TITLE = "Newest";
 
     public static NewestFragment newInstance(){
-        NewestFragment mf = new NewestFragment();
-        return mf;
-    }
-
-    public static String getTitle(){
-        return "Newest";
+        return new NewestFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lt = new LoadToast(getActivity());
-        lt.setText("Fetching data...").setProgressColor(Color.BLUE).setTranslationY(300).show();
+        lt.setText(Server.FETCHING_DATA).setProgressColor(Color.BLUE).setTranslationY(300).show();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_newest, container, false);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
-        final RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
+        final View v = inflater.inflate(R.layout.fragment_newest, container, false);
+        final RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        final LinearLayoutManager llm = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(llm);
+        recyclerView.setHasFixedSize(true);
 
         new Server().getRecentMovies(1, new Callback<ListMovies>() {
             @Override

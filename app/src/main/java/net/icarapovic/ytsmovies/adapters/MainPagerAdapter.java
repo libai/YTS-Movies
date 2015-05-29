@@ -9,7 +9,6 @@ import net.icarapovic.ytsmovies.fragments.UpcomingFragment;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
-    private static int ITEM_COUNT = 2;
     public MainPagerAdapter(FragmentManager fm){
         super(fm);
     }
@@ -28,16 +27,16 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return ITEM_COUNT;
+        return 2;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch(position){
             case 0:
-                return NewestFragment.getTitle();
+                return NewestFragment.TITLE;
             case 1:
-                return UpcomingFragment.getTitle();
+                return UpcomingFragment.TITLE;
             default:
                 return "Unknown" + position;
         }

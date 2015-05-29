@@ -54,8 +54,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(activity, MovieDetailsActivity.class);
-                i.putExtra("id", movies[position].getId());
-                i.putExtra("title",movies[position].getTitle());
+                i.putExtra(Movie.ID, movies[position].getId());
+                i.putExtra(Movie.TITLE, movies[position].getTitle());
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(activity, holder.poster, "poster");
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

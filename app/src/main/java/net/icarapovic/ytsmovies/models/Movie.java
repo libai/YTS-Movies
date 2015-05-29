@@ -3,6 +3,18 @@ package net.icarapovic.ytsmovies.models;
 public class Movie {
 
     public static final String ID = "id";
+    public static final String TITLE = "title";
+    public static final String CHARACTERS = "caracters";
+    public static final String POSTER = "poster";
+    public static final String GENRES = "genres";
+    public static final String RUNTIME = "runtime";
+    public static final String YEAR = "year";
+    public static final String DESCRIPTION = "desc";
+    public static final String IMDB_RATING = "imdb";
+    public static final String MPA_RATING = "mpa";
+    public static final String RT_RATING = "rt";
+    public static final String TRAILER = "trailer";
+
 
     private String small_cover_image;
     private String[] genres;

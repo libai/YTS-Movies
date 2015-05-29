@@ -1,26 +1,30 @@
 package net.icarapovic.ytsmovies.adapters;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import net.icarapovic.ytsmovies.fragments.CastFragment;
 import net.icarapovic.ytsmovies.fragments.MovieInfoFragment;
 
 public class DetailsPagerAdapter extends FragmentPagerAdapter {
 
-    private int ITEM_COUNT = 1;
-    int id;
+    Bundle infoArgs, castArgs;
 
-    public DetailsPagerAdapter(FragmentManager fm, int id){
+    public DetailsPagerAdapter(FragmentManager fm, Bundle infoArgs, Bundle castArgs){
         super(fm);
-        this.id = id;
+        this.castArgs = castArgs;
+        this.infoArgs = infoArgs;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                return MovieInfoFragment.newInstance(id);
+                return MovieInfoFragment.newInstance(infoArgs);
+            case 1:
+                return CastFragment.newInstance(castArgs);
             default:
                 return null;
         }
@@ -28,14 +32,16 @@ public class DetailsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return ITEM_COUNT;
+        return 2;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch(position){
             case 0:
-                return MovieInfoFragment.getTitle();
+                return MovieInfoFragment.NAME;
+            case 1:
+                return CastFragment.NAME;
             default:
                 return "Unknown";
         }

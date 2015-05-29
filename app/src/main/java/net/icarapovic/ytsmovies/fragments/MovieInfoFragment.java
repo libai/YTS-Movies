@@ -1,9 +1,7 @@
 package net.icarapovic.ytsmovies.fragments;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,38 +11,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import net.icarapovic.ytsmovies.R;
-import net.icarapovic.ytsmovies.api.Server;
 import net.icarapovic.ytsmovies.models.Movie;
-import net.icarapovic.ytsmovies.models.MovieDetails;
 import net.icarapovic.ytsmovies.responses.MovieDetailsResponse;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MovieInfoFragment extends Fragment {
 
     MovieDetailsResponse m;
+    Bundle args;
+    public static final String NAME = "Information";
 
-    public static MovieInfoFragment newInstance(int id) {
+    public static MovieInfoFragment newInstance(Bundle args) {
         MovieInfoFragment fragment = new MovieInfoFragment();
-        Bundle args = new Bundle();
-        args.putInt("id", id);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public static String getTitle(){
-        return "Information";
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        args = getArguments();
         super.onCreate(savedInstanceState);
     }
 
@@ -63,47 +51,35 @@ public class MovieInfoFragment extends Fragment {
         final TextView desc = (TextView) v.findViewById(R.id.description);
         final Button youtube = (Button) v.findViewById(R.id.youtube);
 
-        new Server().getMovieDetails(getArguments().getInt("id"), new Callback<MovieDetails>() {
-            @Override
-            public void success(MovieDetails movieDetails, Response response) {
-                m = movieDetails.getData();
+                Picasso.with(getActivity().getApplicationContext()).load(args.getString(Movie.POSTER)).into(poster);
 
-                Picasso.with(getActivity().getApplicationContext()).load(m.getImages().getLarge_cover_image()).into(poster);
-                if(m.getGenres().length == 1)
-                    genre.setText(m.getGenres()[0]);
+                if(args.getStringArray(Movie.GENRES).length == 1)
+                    genre.setText(args.getStringArray(Movie.GENRES)[0]);
                 else
-                    genre.setText(m.getGenres()[0] + " / " + m.getGenres()[1]);
-                year.setText(m.getYear());
-                runtime.setText(m.getRuntime() + " min");
-                imdb.setText(m.getRating() + " / 10");
-                rt_rating.setText("RT: " + m.getRt_critics_rating());
-                mpa.setText("MPA: " + m.getMpa_rating());
-                desc.setText(m.getDescription_full());
+                    genre.setText(args.getStringArray(Movie.GENRES)[0] + " / " + args.getStringArray(Movie.GENRES)[1]);
 
+                year.setText(args.getString(Movie.YEAR));
+                runtime.setText(args.getString(Movie.RUNTIME) + " min");
+                imdb.setText(args.getString(Movie.IMDB_RATING) + " / 10");
+                rt_rating.setText("RT: " + args.getString(Movie.RT_RATING));
+                mpa.setText("MPA: " + args.getString(Movie.MPA_RATING));
+                desc.setText(args.getString(Movie.DESCRIPTION));
 
                 youtube.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try{
-                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + m.getYt_trailer_code()));
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + args.getString(Movie.TRAILER)));
                             startActivity(i);
                         }catch (ActivityNotFoundException ex){
                             Intent i = new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse("http://www.youtube.com/watch?v=" + m.getYt_trailer_code()));
+                                    Uri.parse("http://www.youtube.com/watch?v=" + args.getString(Movie.TRAILER)));
                             startActivity(i);
                         }
                     }
                 });
 
                 youtube.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Toast.makeText(getActivity().getApplicationContext(), "Error receiving data", Toast.LENGTH_LONG).show();
-            }
-        });
-
 
         return v;
     }

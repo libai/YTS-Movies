@@ -23,19 +23,12 @@ import retrofit.client.Response;
 
 public class UpcomingFragment extends Fragment{
 
+    public static final CharSequence TITLE = "Upcoming";
+
     public static UpcomingFragment newInstance(){
-        UpcomingFragment mf = new UpcomingFragment();
-        return mf;
+        return new UpcomingFragment();
     }
 
-    public static String getTitle(){
-        return "Upcoming";
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
