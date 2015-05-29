@@ -22,12 +22,8 @@ import retrofit.client.Response;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private Intent data;
     private String query, quality, genre, sort, order, rating;
     private RecyclerView recyclerView;
-    private Toolbar toolbar;
-    private LinearLayoutManager llm;
-    private int page = 1;
     private LoadToast lt;
 
     @Override
@@ -35,13 +31,15 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_result);
 
+        // initialize objects and reference views
         init();
 
+        // fetch data from server
         displayData();
     }
 
     private void init(){
-        data = getIntent();
+        Intent data = getIntent();
         lt = new LoadToast(this);
         lt.setText("Fetching results...").setTranslationY(300).show();
 
@@ -52,14 +50,14 @@ public class ResultActivity extends AppCompatActivity {
         order = data.getStringExtra("order");
         rating = data.getStringExtra("rating");
 
-        llm = new LinearLayoutManager(this);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(llm);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,6 +65,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private void displayData(){
         Server server = new Server();
+        int page = 1;
         server.searchByFilter(query, quality, genre, sort, order, rating, page, new Callback<ListMovies>() {
             @Override
             public void success(ListMovies listMovies, Response response) {
