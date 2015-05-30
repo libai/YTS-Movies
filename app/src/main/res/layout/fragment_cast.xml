@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout
+
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:padding="16dp"
@@ -21,6 +24,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:id="@+id/director_img"
+            tools:background="#fff"
             class="de.hdodenhof.circleimageview.CircleImageView" />
 
         <LinearLayout
@@ -50,51 +54,9 @@
                 android:paddingTop="5dp"
                 tools:text="SOME DIRECTOR"/>
 
-
-
         </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="8dp">
 
-       <ImageView
-           android:layout_width="0dp"
-           android:layout_height="100dp"
-           tools:background="#fff"
-           android:layout_weight="1"
-           android:id="@+id/actorImg1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
-            android:textColor="@color/black"
-            android:id="@+id/actorName1"
-            tools:text="ACTOR NAME as \nCharacter name"
-            android:gravity="center|left"
-            android:paddingLeft="16dp"/>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            tools:background="#fff"
-            android:layout_weight="1"
-            android:id="@+id/actorImg2"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
-            android:id="@+id/actorName2"
-            android:textColor="@color/black"
-            tools:text="ACTOR NAME as \nCharacter name"
-            android:gravity="center|left"
-            android:paddingLeft="16dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -102,43 +64,145 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:paddingBottom="8dp">
 
-        <ImageView
-            android:layout_width="0dp"
+        <view
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            tools:background="#fff"
-            android:layout_weight="1"
-            android:id="@+id/actorImg3"/>
+            tools:background="#FFF"
+            android:id="@+id/actImg1"
+            class="de.hdodenhof.circleimageview.CircleImageView"/>
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
             android:textColor="@color/black"
-            android:id="@+id/actorName3"
-            tools:text="ACTOR NAME as \nCharacter name"
-            android:gravity="center|left"
-            android:paddingLeft="16dp"/>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            tools:background="#fff"
-            android:layout_weight="1"
-            android:id="@+id/actorImg4"/>
+            android:id="@+id/actName1"
+            android:layout_height="match_parent"
+            tools:text="Actor Name as"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="3"
-            android:textColor="@color/black"
-            android:id="@+id/actorName4"
-            tools:text="ACTOR NAME as \nCharacter name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center|left"
-            android:paddingLeft="16dp"/>
+            android:id="@+id/char1"
+            android:textColor="@color/color_orange_dark"
+            tools:text="character"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp">
+
+        <view
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:background="#FFF"
+            android:id="@+id/actImg2"
+            class="de.hdodenhof.circleimageview.CircleImageView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:textColor="@color/black"
+            android:paddingRight="8dp"
+            android:id="@+id/actName2"
+            android:layout_height="match_parent"
+            tools:text="Actor Name as"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:id="@+id/char2"
+            android:textColor="@color/color_orange_dark"
+            tools:text="character"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp">
+
+        <view
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:background="#FFF"
+            android:id="@+id/actImg3"
+            class="de.hdodenhof.circleimageview.CircleImageView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:textColor="@color/black"
+            android:paddingRight="8dp"
+            android:id="@+id/actName3"
+            android:layout_height="match_parent"
+            tools:text="Actor Name as"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:id="@+id/char3"
+            android:textColor="@color/color_orange_dark"
+            tools:text="character"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp">
+
+        <view
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:background="#FFF"
+            android:id="@+id/actImg4"
+            class="de.hdodenhof.circleimageview.CircleImageView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/black"
+            android:id="@+id/actName4"
+            android:layout_height="match_parent"
+            tools:text="Actor Name as"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:id="@+id/char4"
+            android:textColor="@color/color_orange_dark"
+            tools:text="character"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
+
 </ScrollView>
