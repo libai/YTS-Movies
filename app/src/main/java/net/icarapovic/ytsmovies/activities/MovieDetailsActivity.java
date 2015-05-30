@@ -43,7 +43,7 @@ public class MovieDetailsActivity extends AppCompatActivity{
         final LoadToast lt = new LoadToast(this);
         lt.setText(Server.FETCHING_DATA)
                 .setProgressColor(Color.BLUE)
-                .setTranslationY(150)
+                .setTranslationY(350)
                 .show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

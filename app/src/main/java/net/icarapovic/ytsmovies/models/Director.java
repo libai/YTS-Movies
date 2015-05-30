@@ -2,8 +2,8 @@ package net.icarapovic.ytsmovies.models;
 
 public class Director {
 
-    public static final String MEDIUM_IMAGE = "image";
-    public static final String NAME = "name";
+    public static final String MEDIUM_IMAGE = "director_medium_image";
+    public static final String NAME = "director_name";
 
     private String name;
     private String small_image;

@@ -2,8 +2,8 @@ package net.icarapovic.ytsmovies.models;
 
 public class Actor {
 
-    public static final String NAME = "name";
-    public static final String MEDIUM_IMG = "m_img";
+    public static final String NAME = "actor_name";
+    public static final String MEDIUM_IMG = "actor_medium_image";
 
     private String name;
     private String character_name;

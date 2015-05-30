@@ -15,6 +15,9 @@ import com.squareup.picasso.Picasso;
 import net.icarapovic.ytsmovies.R;
 import net.icarapovic.ytsmovies.models.Actor;
 import net.icarapovic.ytsmovies.models.Director;
+import net.icarapovic.ytsmovies.models.Movie;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CastFragment extends Fragment{
 
@@ -40,10 +43,11 @@ public class CastFragment extends Fragment{
         View v = inflater.inflate(R.layout.fragment_cast, container, false);
         Context c = getActivity().getApplicationContext();
 
-        ImageView dirImg, actImg1, actImg2, actImg3, actImg4;
+        ImageView actImg1, actImg2, actImg3, actImg4;
         TextView dirName, actName1, actName2, actName3, actName4;
+        CircleImageView dirImg;
 
-        dirImg = (ImageView) v.findViewById(R.id.director_img);
+        dirImg = (CircleImageView) v.findViewById(R.id.director_img);
         dirName = (TextView) v.findViewById(R.id.director);
         actImg1 = (ImageView) v.findViewById(R.id.actorImg1);
         actImg2 = (ImageView) v.findViewById(R.id.actorImg2);
@@ -61,10 +65,10 @@ public class CastFragment extends Fragment{
         Picasso.with(c).load(args.getStringArray(Actor.MEDIUM_IMG)[3]).into(actImg4);
 
         dirName.setText(args.getString(Director.NAME));
-        actName1.setText(args.getStringArray(Actor.NAME)[0]);
-        actName2.setText(args.getStringArray(Actor.NAME)[1]);
-        actName3.setText(args.getStringArray(Actor.NAME)[2]);
-        actName4.setText(args.getStringArray(Actor.NAME)[3]);
+        actName1.setText(args.getStringArray(Actor.NAME)[0] + " \nas \n" + args.getStringArray(Movie.CHARACTERS)[0]);
+        actName2.setText(args.getStringArray(Actor.NAME)[1] + " \nas \n" + args.getStringArray(Movie.CHARACTERS)[1]);
+        actName3.setText(args.getStringArray(Actor.NAME)[2] + " \nas \n" + args.getStringArray(Movie.CHARACTERS)[2]);
+        actName4.setText(args.getStringArray(Actor.NAME)[3] + " \nas \n" + args.getStringArray(Movie.CHARACTERS)[3]);
 
         return v;
     }

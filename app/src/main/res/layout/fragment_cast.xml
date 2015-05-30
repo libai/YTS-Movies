@@ -3,7 +3,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -14,11 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="100dp"
-            tools:background="#fff"
+        <view
+            app:border_color="@color/color_green_dark"
+            app:border_width="2dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:id="@+id/director_img"
-            android:layout_height="150dp" />
+            class="de.hdodenhof.circleimageview.CircleImageView" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,8 +33,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                android:paddingLeft="10dp"
+                android:paddingLeft="16dp"
                 android:paddingBottom="5dp"
+                android:textColor="@color/color_orange_dark"
+                android:textSize="20sp"
                 android:text="@string/directed_by"/>
 
             <TextView
@@ -39,9 +44,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:id="@+id/director"
-                android:paddingLeft="10dp"
+                android:paddingLeft="16dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
                 android:paddingTop="5dp"
                 tools:text="SOME DIRECTOR"/>
+
+
 
         </LinearLayout>
     </LinearLayout>
@@ -64,19 +73,11 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="3"
+            android:textColor="@color/black"
             android:id="@+id/actorName1"
             tools:text="ACTOR NAME as \nCharacter name"
             android:gravity="center|left"
             android:paddingLeft="16dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="8dp">
 
         <ImageView
             android:layout_width="0dp"
@@ -90,6 +91,7 @@
             android:layout_height="100dp"
             android:layout_weight="3"
             android:id="@+id/actorName2"
+            android:textColor="@color/black"
             tools:text="ACTOR NAME as \nCharacter name"
             android:gravity="center|left"
             android:paddingLeft="16dp"/>
@@ -114,19 +116,11 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="3"
+            android:textColor="@color/black"
             android:id="@+id/actorName3"
             tools:text="ACTOR NAME as \nCharacter name"
             android:gravity="center|left"
             android:paddingLeft="16dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="8dp">
 
         <ImageView
             android:layout_width="0dp"
@@ -139,12 +133,12 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="3"
+            android:textColor="@color/black"
             android:id="@+id/actorName4"
             tools:text="ACTOR NAME as \nCharacter name"
             android:gravity="center|left"
             android:paddingLeft="16dp"/>
     </LinearLayout>
-
 
 </LinearLayout>
 </ScrollView>

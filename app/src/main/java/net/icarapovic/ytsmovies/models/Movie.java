@@ -2,18 +2,18 @@ package net.icarapovic.ytsmovies.models;
 
 public class Movie {
 
-    public static final String ID = "id";
-    public static final String TITLE = "title";
-    public static final String CHARACTERS = "caracters";
-    public static final String POSTER = "poster";
-    public static final String GENRES = "genres";
-    public static final String RUNTIME = "runtime";
-    public static final String YEAR = "year";
-    public static final String DESCRIPTION = "desc";
-    public static final String IMDB_RATING = "imdb";
-    public static final String MPA_RATING = "mpa";
-    public static final String RT_RATING = "rt";
-    public static final String TRAILER = "trailer";
+    public static final String ID = "movie_id";
+    public static final String TITLE = "movie_title";
+    public static final String CHARACTERS = "movie_caracters";
+    public static final String POSTER = "movie_poster";
+    public static final String GENRES = "movie_genres";
+    public static final String RUNTIME = "movie_runtime";
+    public static final String YEAR = "movie_year";
+    public static final String DESCRIPTION = "movie_desc";
+    public static final String IMDB_RATING = "movie_imdb_rating";
+    public static final String MPA_RATING = "movie_mpa_rating";
+    public static final String RT_RATING = "movie_rt_rating";
+    public static final String TRAILER = "movie_trailer_youtube_code";
 
 
     private String small_cover_image;
