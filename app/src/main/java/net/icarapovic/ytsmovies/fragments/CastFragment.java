@@ -17,8 +17,6 @@ import net.icarapovic.ytsmovies.models.Actor;
 import net.icarapovic.ytsmovies.models.Director;
 import net.icarapovic.ytsmovies.models.Movie;
 
-import org.w3c.dom.Text;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CastFragment extends Fragment{
@@ -71,14 +69,10 @@ public class CastFragment extends Fragment{
         Picasso.with(c).load(args.getStringArray(Actor.MEDIUM_IMG)[3]).into(actImg4);
 
         dirName.setText(args.getString(Director.NAME));
-        actName1.setText(args.getStringArray(Actor.NAME)[0] + " as");
-        actName2.setText(args.getStringArray(Actor.NAME)[1] + " as");
-        actName3.setText(args.getStringArray(Actor.NAME)[2] + " as");
-        actName4.setText(args.getStringArray(Actor.NAME)[3] + " as");
-        char1.setText(args.getStringArray(Movie.CHARACTERS)[0]);
-        char2.setText(args.getStringArray(Movie.CHARACTERS)[1]);
-        char3.setText(args.getStringArray(Movie.CHARACTERS)[2]);
-        char4.setText(args.getStringArray(Movie.CHARACTERS)[3]);
+        actName1.setText(args.getStringArray(Actor.NAME)[0] + " as\n" + args.getStringArray(Movie.CHARACTERS)[0]);
+        actName2.setText(args.getStringArray(Actor.NAME)[1] + " as\n" + args.getStringArray(Movie.CHARACTERS)[1]);
+        actName3.setText(args.getStringArray(Actor.NAME)[2] + " as\n" + args.getStringArray(Movie.CHARACTERS)[2]);
+        actName4.setText(args.getStringArray(Actor.NAME)[3] + " as\n" + args.getStringArray(Movie.CHARACTERS)[3]);
 
         return v;
     }
